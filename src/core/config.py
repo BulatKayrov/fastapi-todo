@@ -25,6 +25,11 @@ class Settings(BaseSettings):
     # database
     echo: bool = False
 
+    # jwt
+    secret_key: str = "secret"
+    algorithm: str = "HS256"
+    expires_token: int = 300
+
     @property
     def sqlite_url(self):
         return f"sqlite+aiosqlite:///{BASE_DIR}/database.db"
