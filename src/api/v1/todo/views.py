@@ -31,12 +31,12 @@ async def delete_todo(pk: int):
     log.info("Todo deleted")
     return {"success": True}
 
-
 @router.get("/details/{pk}", response_model=SDetailTODO)
 async def detail_todo(pk: int, user = Depends(get_current_user)):
-    log.info("Get details")
-    return await todo_service.find_one_or_none(pk=pk, user_pk=user.pk)
-
+    result = await todo_service.find_one_or_none(pk=pk, user_pk=user.pk)
+    if result:
+        return result
+    raise HTTPException(status_code=404, detail='oi')
 
 @router.put("/update/{pk}", response_model=SResponseToDo)
 async def update_todo(pk: int, new_todo: SUpdateTODO):
