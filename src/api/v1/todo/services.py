@@ -7,8 +7,8 @@ class ToDoService:
     def __init__(self):
         self.repository = ToDoRepository()
 
-    async def find_all(self):
-        return await self.repository.find_all()
+    async def find_all(self, user_pk: int):
+        return await self.repository.find_all(user_pk=user_pk)
 
     async def create(self, data: SToDoCreate):
         return await self.repository.create_record(new_data=data.model_dump())
@@ -16,8 +16,8 @@ class ToDoService:
     async def delete(self, pk: int):
         await self.repository.delete_record(pk=pk)
 
-    async def find_one_or_none(self, pk: int):
-        return await self.repository.find_one_or_none(pk=pk)
+    async def find_one_or_none(self, pk: int, user_pk: int):
+        return await self.repository.find_one_or_none(pk=pk, user_pk=user_pk)
 
     async def update(self, pk: int, data: SUpdateTODO):
         return await self.repository.update_record(

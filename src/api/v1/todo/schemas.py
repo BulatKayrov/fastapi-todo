@@ -10,6 +10,7 @@ class BaseTodo(BaseModel):
 class SToDoCreate(BaseModel):
     title: str
     description: str
+    user_pk: int = 1
 
 
 class SResponseToDo(BaseModel):
@@ -17,6 +18,7 @@ class SResponseToDo(BaseModel):
     pk: int
     title: str
     status: bool
+    user_pk: int
 
 
 class SDetailTODO(SResponseToDo):
@@ -27,3 +29,4 @@ class SUpdateTODO(BaseModel):
     title: str | None = None
     description: str | None = None
     status: bool | None = None
+    user_pk: int
